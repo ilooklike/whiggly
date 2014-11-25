@@ -1,0 +1,6 @@
+<% if signed_in? %>
+	<%= button_to "Sign out", session_url, method: :delete, class: "btn btn-primary navbar-btn" %>
+<% else %>
+  <%= link_to "Log in", new_session_url %>
+  <%= link_to "Sign up", new_user_url %>
+<% end %>
