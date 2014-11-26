@@ -33,8 +33,13 @@ body {
 	padding: 0; 
 }
 
+.cust-nav {
+	margin: 0px;
+	//background: rgba(0,0,0,0.4);
+}
+
 #map-canvas { 
-	height: 100%;
+	height: 100vh;
 	width: 100%;
 }
  
@@ -49,4 +54,10 @@ body {
 
 .submit {
 	margin-left: 73px;
+}
+
+.event {
+	height: 100px;
+	width: 100px;
+	background-color: white;
 }

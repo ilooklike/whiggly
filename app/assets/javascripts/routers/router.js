@@ -10,7 +10,7 @@ Whiggly.Routers.Router = Backbone.Router.extend({
 	index: function() {
 		var mapView = new Whiggly.Views.Map();
 		// $("#map-canvas").html(mapView);
-		mapView.initializeMap()
+		mapView.initializeMap();
 	},
 	
 	_swapView: function(newView) {
