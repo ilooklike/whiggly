@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125191212) do
+ActiveRecord::Schema.define(version: 20141125233633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: true do |t|
+    t.string   "title",                     null: false
+    t.text     "description",               null: false
+    t.datetime "start_time",                null: false
+    t.datetime "end_time",                  null: false
+    t.string   "category",                  null: false
+    t.float    "cost",        default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["end_time"], name: "index_events_on_end_time", using: :btree
+  add_index "events", ["start_time"], name: "index_events_on_start_time", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false
