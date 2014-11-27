@@ -7,6 +7,7 @@ module Api
         render json: @event
       else
         render json: @event.errors.full_messages, status: :unprocessable_entity
+      end
     end
     
     def destroy
