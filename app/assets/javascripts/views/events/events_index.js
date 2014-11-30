@@ -43,7 +43,7 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 				this._infoWindow.close();
 			}
 			
-			//toggle open when click on same marker		
+			//toggle close when clicked on the same marker		
 			if (this._marker === marker) {
 				this._marker = null;
 				marker.setIcon(this.closedIcon);
