@@ -8,21 +8,13 @@ Whiggly.Views.Map = Backbone.View.extend({
 		};
 
 		this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-		
-		// var marker = new google.maps.Marker({
-	// 		position: new google.maps.LatLng(37.788131, -122.412952),
-	// 		map: this.map,
-	// 		title:"Hello World!"
-	// 	});
-	//
-	// 	var info = new google.maps.InfoWindow({
-	// 		content: "<h1>Oh HI!</h1>",
-	// 		marker: marker
-	// 	})
-	//
-	// 	google.maps.event.addListener(marker, "click", function() {
-	// 		info.open(this.map,info.marker);
-	// 	})
+		google.maps.event.addListener(this.map, "zoom_changed", (function() {
+			if (this.map.zoom >= 15) {
+				this.map.mapTypeId = google.maps.MapTypeId.ROADMAP
+			} else {
+				this.map.mapTypeId = google.maps.MapTypeId.TERRAIN
+			}
+		}).bind(this))
 	}
 	
 

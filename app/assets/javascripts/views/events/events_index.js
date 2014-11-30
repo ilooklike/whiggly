@@ -4,43 +4,67 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		this.mapView = new Whiggly.Views.Map();
 		this.mapView.initializeMap();
 		this.listenTo(this.collection, "sync", this.drop);
-		this.markers = []
+		this.markers = [];
+		this.openIcon = '/assets/apple-eyes-icon.png';
+		this.closedIcon = '/assets/apple-outline-icon.png';
 	},
 	
 	drop: function() {
 		var view = this;
-		
-		function delayDrop(j) {
-			view.addMarker(view.collection.models[j]);
+		var j = 0;
+		function delayDrop() {
+			// console.log(Date.now());
+			view.addMarker(view.collection.models[j]);	
+			j++;
 		}
 		
+		//TODO time delay is not working
 		for (var i = 0; i < this.collection.length; i++) {
-			setTimeout(delayDrop(i), i * 1000);
-			console.log(i * 200)
+			setTimeout(delayDrop(), i * 200);
+			// console.log(Date.now())
 		}
 	},
 	
 	addMarker: function(event) {
 		var lagLng = new google.maps.LatLng(event.escape('latitude'),
-																				event.escape('longtitude'));
+																				event.escape('longtitude')
+																				);
 		var marker = new google.maps.Marker({
 			position: lagLng,
 			map: this.mapView.map,
 			draggable: false,
 			animation: google.maps.Animation.DROP,
-			// infoWindow: this.infoWindow(event)
+			icon: this.closedIcon
 		});
 		
 		google.maps.event.addListener(marker, "click", (function() {
+			
 			if (this._infoWindow) {
 				this._infoWindow.close();
 			}
 			
+			//toggle open when click on same marker		
+			if (this._marker === marker) {
+				this._marker = null;
+				marker.setIcon(this.closedIcon);
+				return
+			}
+			
+			this.changeCurrentMarker(marker);
 			this._infoWindow = this.infoWindow(event);
 			this._infoWindow.open(marker.map, marker);
-		  }).bind(this));
+		  }).bind(this)
+		);
 		
 		this.markers.push(marker);
+	},
+	
+	changeCurrentMarker: function(marker) {
+		if (this._marker) {
+			this._marker.setIcon(this.closedIcon)
+		}
+		this._marker = marker;
+		marker.setIcon(this.openIcon);
 	},
 	
 	//add popup boxes 
