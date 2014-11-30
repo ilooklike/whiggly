@@ -6,22 +6,19 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		this.listenTo(this.collection, "sync", this.drop);
 		this.markers = [];
 		this.openIcon = '/assets/apple-eyes-icon.png';
-		this.closedIcon = '/assets/apple-outline-icon.png';
+		this.closedIcon = '/assets/pin.png';
 	},
 	
 	drop: function() {
 		var view = this;
 		var j = 0;
 		function delayDrop() {
-			// console.log(Date.now());
 			view.addMarker(view.collection.models[j]);	
 			j++;
 		}
 		
-		//TODO time delay is not working
 		for (var i = 0; i < this.collection.length; i++) {
-			setTimeout(delayDrop(), i * 200);
-			// console.log(Date.now())
+			setTimeout(delayDrop, i * 200);
 		}
 	},
 	
