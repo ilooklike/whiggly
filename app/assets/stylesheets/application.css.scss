@@ -70,11 +70,13 @@ a.navbar-brand img {
 .info-text {
 	width: 160px;
 	float: right;
-	margin-left: 3px;
 }
 
 .text-box p {
-	display: inline-block;
+//	display: inline-block;
 }
 
+.text-box dt {
+	display: inline-block;
+}
 
