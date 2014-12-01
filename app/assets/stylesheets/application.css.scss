@@ -27,6 +27,7 @@ body {
 }
 
 .container {
+	position: relatives;
 	height: 100%;
 	width: 100%;
 	margin: 0; 
@@ -49,9 +50,27 @@ a.navbar-brand img {
 	margin-left: 2px;
 }
 
+#main {
+	position: absolute;
+	margin-top: 52px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
 #map-canvas { 
-	height: 100vh;
+	height: 100%;
 	width: 100%;
+}
+
+#side-bar {
+	position: absolute;
+	right: 0;
+	border: 2px solid red;//delete eventually
+	width: 20%;
+	height: 100%;
+	top: 0;
 }
  
 .login {
@@ -67,10 +86,10 @@ a.navbar-brand img {
 	margin-left: 73px;
 }
 
-.info-text {
-	width: 160px;
-	float: right;
-}
+//TODO add responsive element
+//.text-box *:hover {
+//	background-color: lightgrey;
+//}
 
 .text-box p {
 //	display: inline-block;
@@ -80,3 +99,7 @@ a.navbar-brand img {
 	display: inline-block;
 }
 
+.info-text {
+	width: 160px;
+	float: right;
+}

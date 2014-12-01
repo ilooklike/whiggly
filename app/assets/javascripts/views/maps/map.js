@@ -51,7 +51,7 @@ Whiggly.Views.Map = Backbone.View.extend({
 			  }
 		  ];
 			
-		var styledMap = new google.maps.StyledMapType(styles, { name: "Styled Map" });
+		var styledMap = new google.maps.StyledMapType(styles, { name: "Whiggly Map" });
 							
 		var mapOptions = {
 			zoom: 13,

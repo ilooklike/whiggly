@@ -1,4 +1,7 @@
 Whiggly.Views.EventsIndex = Backbone.View.extend({
+	events: {
+		"click button.expand": "subView"
+	},
 	
 	initialize: function() {
 		this.mapView = new Whiggly.Views.Map();
@@ -53,6 +56,7 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		  }).bind(this)
 		);
 		
+		//bounce when mouseover pins
 		google.maps.event.addListener(marker, "mouseover", function() {
 			marker.setAnimation(google.maps.Animation.BOUNCE);
 		})
