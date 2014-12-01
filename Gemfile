@@ -27,7 +27,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'backbone-on-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
-gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'faker'
 

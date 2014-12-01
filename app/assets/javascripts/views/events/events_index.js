@@ -13,7 +13,7 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		var view = this;
 		var j = 0;
 		function delayDrop() {
-			view.addMarker(view.collection.models[j]);	
+			view.addMarker(view.collection.models[j], j);	
 			j++;
 		}
 		
@@ -35,7 +35,7 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		});
 		
 		google.maps.event.addListener(marker, "click", (function() {
-			
+			//TODO bring icon to front with zindex
 			if (this._infoWindow) {
 				this._infoWindow.close();
 			}
@@ -60,8 +60,11 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		if (this._marker) {
 			this._marker.setIcon(this.closedIcon)
 		}
+		
 		this._marker = marker;
 		marker.setIcon(this.openIcon);
+		marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1)
+	
 	},
 	
 	//add popup boxes 
@@ -69,18 +72,9 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		var infoView = new Whiggly.Views.EventItem({ model: event });
 		var info = new google.maps.InfoWindow({
 			content: infoView.template({ event: event }),
-			maxWidth: 200
+			maxWidth: 220
 		});		
 		
 		return info;
 	}
 });
-
-// var info = new google.maps.InfoWindow({
-// 	content: "<h1>Oh HI!</h1>",
-// 	marker: marker
-// })
-//
-// google.maps.event.addListener(marker, "click", function() {
-// 	info.open(this.map,info.marker);
-// })

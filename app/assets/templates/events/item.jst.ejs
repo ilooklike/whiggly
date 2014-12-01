@@ -1,4 +1,9 @@
 <div class="text-box">
 <h3><%= event.escape("title") %></h3>
-
-</div>
+<p><b>When:</b><span class="info-text"><%= (new Date(event.escape('start_time'))).toLocaleTimeString() + " " + 
+									(new Date(event.escape('start_time'))).toLocaleDateString() + " -- " +
+	 								(new Date(event.escape('end_time'))).toLocaleTimeString() + " " + 
+									(new Date(event.escape('end_time'))).toLocaleDateString() %></span></p>
+<p><b>Cost:</b><span class="info-text"> $<%= event.escape("cost") %></span></p>
+<p><b>Description: </b><%= event.escape("description").substr(0,150) + "..." %></p>
+</div> 

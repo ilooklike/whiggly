@@ -67,8 +67,14 @@ a.navbar-brand img {
 	margin-left: 73px;
 }
 
-.event {
-	height: 100px;
-	width: 100px;
-	background-color: white;
+.info-text {
+	width: 160px;
+	float: right;
+	margin-left: 3px;
 }
+
+.text-box p {
+	display: inline-block;
+}
+
+
