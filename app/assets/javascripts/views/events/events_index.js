@@ -53,6 +53,14 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		  }).bind(this)
 		);
 		
+		google.maps.event.addListener(marker, "mouseover", function() {
+			marker.setAnimation(google.maps.Animation.BOUNCE);
+		})
+		
+		google.maps.event.addListener(marker, "mouseout", function() {
+			marker.setAnimation();
+		})
+		
 		this.markers.push(marker);
 	},
 	
