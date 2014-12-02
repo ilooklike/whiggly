@@ -1,6 +1,7 @@
 Whiggly.Views.EventsIndex = Backbone.View.extend({
 	events: {
-		"click button.expand": "subView"
+		"click search-box": "showSearch",
+		"click button#search-events": "search"
 	},
 	
 	initialize: function() {
@@ -88,5 +89,13 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		});		
 		
 		return info;
+	},
+	
+	showSearch: function(event) {
+		
+	},
+	
+	search: function(event) {
+		// this.collection.fetch({search: })
 	}
 });
