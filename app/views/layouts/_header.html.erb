@@ -7,6 +7,18 @@
 				<p class="navbar-brand">Location Based Storytelling</p>
     </div>
 		
+		 <form class="navbar-form navbar-left" role="search" id="search-form">
+			 <div class="form-group">
+				<input type="text" name="start_date" class="span12 datepicker" placeholder="Any Start Date">
+				<input type="text" name="end_date"class="span12 datepicker" placeholder="Any End Date">
+				<!--TODO make this autocomplete -->
+				<input type="text" name="tag"id="tags" placeholder="search for tags like 'cat'">
+				</div>
+			<button type="submit" id="search-button">
+				<span class="glyphicon glyphicon-search search-icon"></span>
+			</button>
+		</form>
+		
 		<ul class="nav navbar-nav navbar-right">
 <% if signed_in? %>
 	<li><%= button_to "Sign out", session_url, method: :delete, class: "btn navbar-btn whiggly-button" %></li>

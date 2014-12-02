@@ -1,23 +1,29 @@
 Whiggly.Views.EventsIndex = Backbone.View.extend({
 	events: {
-		"click search-box": "showSearch",
-		"click button#search-events": "search"
+		"submit #search-form": "search" 
 	},
 	
 	initialize: function() {
 		this.mapView = new Whiggly.Views.Map();
 		this.mapView.initializeMap();
 		this.listenTo(this.collection, "sync", this.drop);
+		this.listenTo(this.collection, "add", this.addMarker)
 		this.markers = [];
 		this.openIcon = '/assets/apple-eyes-icon.png';
 		this.closedIcon = '/assets/pin.png';
+		// $('#search-form').on('submit', function(event) {
+		// 			event.preventDefault()
+		// 			debugger
+		// 			// var startDate = "startDate" + $(".datepicker:first").datepicker( "getDate" )
+		// 			 Backbone.history.navigate("/search?" + val, { trigger: true })
+		// 		})
 	},
 	
-	drop: function() {
+	drop: function(events) {
 		var view = this;
 		var j = 0;
 		function delayDrop() {
-			view.addMarker(view.collection.models[j], j);	
+			view.addMarker(events.models[j], j);	
 			j++;
 		}
 		
@@ -91,12 +97,8 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		return info;
 	},
 	
-	// showSearch: function(event) {
-	// 	// var searchView = new Whiggly.Views.SearchView()
-	// 	$("#search").modal();
-	// },
-	
 	search: function(event) {
-		// this.collection.fetch({search: })
+		event.preventDefault();
+		debugger
 	}
 });

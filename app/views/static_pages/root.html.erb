@@ -1,36 +1,6 @@
 <div id="main" class="clearfix">
 	<div id="map-canvas"></div>
 	<div id="side-bar"><!-- sidebar here --></div>
-	<div id="search"><div id="search-box" data-toggle="modal" data-target="#basicModal"><span class="glyphicon glyphicon-search search-icon"></span></div></div>
-	
-<!--start date, start time, end date end time, tags? -->
-	
-	
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" data-focus-on="input:first">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-search search-icon"></span></h4>
-            </div>
-						
-            <div class="modal-body">
-                <p>
-									<input type="text" class="span12 datepicker" placeholder="Any Start Date">
-									<input type="text" class="span12 datepicker" placeholder="Any End Date">
-<!--TODO make this autocomplete -->
-									<input type="text" id="tags" placeholder="search for tags like 'cat'">
-								
-								<button type="button" class="btn btn-primary whiggly-button" id="search-button">Search</button>
-	            </p>
-						</div>
-						
-            <div class="modal-footer" style="display:none">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary whiggly-button">Search</button>
-        		</div>
-    </div>
-  </div>
-</div>
 </div>
 
 <script>$(Whiggly.initialize);</script>

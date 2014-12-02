@@ -1,7 +1,6 @@
 Whiggly.Routers.Router = Backbone.Router.extend({
 	routes: {
-		"": "index",
-		"/search?*queryString" : "search"
+		"(/?:str)":"index"
 	},
 	
 	initialize: function(options) {
@@ -9,11 +8,22 @@ Whiggly.Routers.Router = Backbone.Router.extend({
 		$( ".datepicker" ).datepicker();
 	}, 
 	
-	index: function() {
-		// var mapView = new Whiggly.Views.Map();
-		// mapView.initializeMap();
-		Whiggly.Events.fetch()
-		var indexView = new Whiggly.Views.EventsIndex({ collection: Whiggly.Events })
+	index: function(str) { //why is str not coming back?
+		var params = this._parseParams(window.location.search)
+		Whiggly.Events.fetch({ data: {search: params }});
+		if (!this._indexView) {
+			this._indexView = new Whiggly.Views.EventsIndex({ collection: Whiggly.Events })
+		}
+	},        
+
+	_parseParams: function(query) {
+		var search = {};
+		var queries = decodeURIComponent(query).replace(/^\?/, "").split('&')
+		for( i = 0; i < queries.length; i++ ) {
+      var pair = queries[i].split('=');
+      search[pair[0]] = pair[1];
+		}	
+		return search
 	},
 	
 	_swapView: function(newView) {
@@ -24,5 +34,5 @@ Whiggly.Routers.Router = Backbone.Router.extend({
 		this.$mainEl.html(newView);
 	
 		this.currentView = newView;
-	}
+	},
 });
