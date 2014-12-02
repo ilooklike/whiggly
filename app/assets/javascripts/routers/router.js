@@ -1,10 +1,12 @@
 Whiggly.Routers.Router = Backbone.Router.extend({
 	routes: {
-		"": "index"
+		"": "index",
+		"/search?*queryString" : "search"
 	},
 	
 	initialize: function(options) {
 		this.$mainEl = options.$mainEl
+		$( ".datepicker" ).datepicker();
 	}, 
 	
 	index: function() {

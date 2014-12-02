@@ -91,9 +91,10 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		return info;
 	},
 	
-	showSearch: function(event) {
-		
-	},
+	// showSearch: function(event) {
+	// 	// var searchView = new Whiggly.Views.SearchView()
+	// 	$("#search").modal();
+	// },
 	
 	search: function(event) {
 		// this.collection.fetch({search: })
