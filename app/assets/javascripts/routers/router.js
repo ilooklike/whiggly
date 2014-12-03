@@ -1,7 +1,6 @@
 Whiggly.Routers.Router = Backbone.Router.extend({
 	routes: {
-		"": "index",
-		"/?*str": "index"
+		"(?*str)": "index"
 	},
 	
 	initialize: function(options) {
@@ -10,7 +9,7 @@ Whiggly.Routers.Router = Backbone.Router.extend({
 	}, 
 	
 	index: function(str) { //why is str not coming back?
-		var params = this._parseParams(window.location.search)
+		var params = this._parseParams(str)
 		Whiggly.Events.fetch({ data: {search: params }});
 		if (!this._indexView) {
 			this._indexView = new Whiggly.Views.EventsIndex({ collection: Whiggly.Events })

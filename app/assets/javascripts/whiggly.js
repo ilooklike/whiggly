@@ -8,7 +8,11 @@ window.Whiggly = {
 			$mainEl: $("div#main")
 		});
 		Backbone.history.start();
-		
+		$("#search-form").on("submit", function(event) {
+			event.preventDefault();
+			var query = $(event.currentTarget).serialize();
+			Backbone.history.navigate("?" + query, { trigger: true })
+		})
 		// function mapInit() {
 		//   var mapOptions = {
 		//     center: { lat: -34.397, lng: 150.644},

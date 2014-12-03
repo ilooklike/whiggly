@@ -4,8 +4,8 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		this.mapView = new Whiggly.Views.Map();
 		this.mapView.initializeMap();
 		//TODO space out the initial pin drops
-		// this.listenTo(this.collection, "sync", this.drop);
-		this.listenTo(this.collection, "add", this.addMarker);
+		this.listenToOnce(this.collection, "sync", this.drop);
+		// 
 		this.listenTo(this.collection, "remove", this.removeMarker);
 		this.markers = [];
 		this.openIcon = '/assets/apple-eyes-icon.png';
@@ -23,6 +23,8 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		for (var i = 0; i < this.collection.length; i++) {
 			setTimeout(delayDrop, i * 200);
 		}
+		
+		this.listenTo(this.collection, "add", this.addMarker);
 	},
 	
 	addMarker: function(event) {
@@ -93,12 +95,22 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 	
 	removeMarker: function(event) {
 		var view = this;
+		var target;
+		var i;
+		var leng = view.markers.length
+		
+		function delayRemove() {
+			target.setMap(null);
+			target = null;
+			view.markers.splice(i, 1);
+		}
 		
 		this.markers.forEach(function(marker, index) { 
 			if (marker.event === event.id) {
-				marker.setMap(null);
-				marker = null;
-				view.markers.splice(index, 1);
+				marker.setAnimation(google.maps.Animation.BOUNCE);
+				target = marker;
+				i = index;
+				setTimeout(delayRemove, (leng - i) *200)
 				return
 			};
 		})
