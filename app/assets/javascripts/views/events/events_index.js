@@ -62,20 +62,20 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		
 		//bounce when mouseover pins
 		google.maps.event.addListener(marker, "mouseover", (function() {
-			if (this._marker !== marker) {
+			if (this._marker && this._marker === marker) {
+				marker.setIcon(this.hoverOpen)
+			} else {
 				marker.setIcon(this.hoverIcon);
 				marker.setZIndex(5)
-			} else {
-				marker.setIcon(this.hoverOpen)
 			}
 		}).bind(this));
 
 		google.maps.event.addListener(marker, "mouseout", (function() {
-			if (this._marker !== marker) {
+			if (this._marker && this._marker === marker) {
+				marker.setIcon(this.openIcon)
+			}	else {
 				marker.setIcon(this.closedIcon);
 				marker.setZIndex(0)	;
-			}	else {
-				marker.setIcon(this.openIcon)
 			}
 		}).bind(this));
 		
@@ -107,6 +107,7 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 			this.markers.forEach(function(marker) { 
 				if (marker.event === event.id) {
 					marker.setIcon(view.closedIcon);
+					view._marker = null
 					return;
 				};
 			})
