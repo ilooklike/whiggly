@@ -228,17 +228,9 @@ line-height: 26px;
 	font-size: 1.4em;
 	cursor: pointer;
 	line-height: 40px;
-	top: -6px;
+	top: -7px;
 //	left: -3px;
 }
-
-.hide-form *{
-	transition: width 1s;
-	width: 0;
-	visibility: hidden;
-}
-
-
 
 .ui-datepicker {
 	color: #CC0000;

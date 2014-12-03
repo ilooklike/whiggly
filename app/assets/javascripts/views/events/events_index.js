@@ -132,7 +132,7 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 				marker.setAnimation(google.maps.Animation.BOUNCE);
 				target = marker;
 				i = index;
-				setTimeout(delayRemove, (leng - i) *200)
+				setTimeout(delayRemove, (leng - i) * 50)
 				return
 			};
 		})
