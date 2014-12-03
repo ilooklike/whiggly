@@ -17,13 +17,7 @@ module Api
     end
     
     def index
-      #do this if we have no search params
-      if (params[:search] = "")
-        @events = Event.all
-      else
-        @events = Event.search(params[:search])
-      end
-
+      @events = Event.search(params[:search])
       render json: @events
     end
     

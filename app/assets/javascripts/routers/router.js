@@ -1,6 +1,7 @@
 Whiggly.Routers.Router = Backbone.Router.extend({
 	routes: {
-		"(/?:str)":"index"
+		"": "index",
+		"/?*str": "index"
 	},
 	
 	initialize: function(options) {

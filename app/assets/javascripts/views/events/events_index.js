@@ -1,29 +1,22 @@
 Whiggly.Views.EventsIndex = Backbone.View.extend({
-	events: {
-		"submit #search-form": "search" 
-	},
 	
 	initialize: function() {
 		this.mapView = new Whiggly.Views.Map();
 		this.mapView.initializeMap();
-		this.listenTo(this.collection, "sync", this.drop);
-		this.listenTo(this.collection, "add", this.addMarker)
+		//TODO space out the initial pin drops
+		// this.listenTo(this.collection, "sync", this.drop);
+		this.listenTo(this.collection, "add", this.addMarker);
+		this.listenTo(this.collection, "remove", this.removeMarker);
 		this.markers = [];
 		this.openIcon = '/assets/apple-eyes-icon.png';
 		this.closedIcon = '/assets/pin.png';
-		// $('#search-form').on('submit', function(event) {
-		// 			event.preventDefault()
-		// 			debugger
-		// 			// var startDate = "startDate" + $(".datepicker:first").datepicker( "getDate" )
-		// 			 Backbone.history.navigate("/search?" + val, { trigger: true })
-		// 		})
 	},
 	
 	drop: function(events) {
 		var view = this;
 		var j = 0;
 		function delayDrop() {
-			view.addMarker(events.models[j], j);	
+			view.addMarker(events.models[j]);	
 			j++;
 		}
 		
@@ -41,7 +34,8 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 			map: this.mapView.map,
 			draggable: false,
 			animation: google.maps.Animation.DROP,
-			icon: this.closedIcon
+			icon: this.closedIcon,
+			event: event.id
 		});
 		
 		google.maps.event.addListener(marker, "click", (function() {
@@ -67,7 +61,7 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		google.maps.event.addListener(marker, "mouseover", function() {
 			marker.setAnimation(google.maps.Animation.BOUNCE);
 		})
-		
+
 		google.maps.event.addListener(marker, "mouseout", function() {
 			marker.setAnimation();
 		})
@@ -97,8 +91,16 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		return info;
 	},
 	
-	search: function(event) {
-		event.preventDefault();
-		debugger
+	removeMarker: function(event) {
+		var view = this;
+		
+		this.markers.forEach(function(marker, index) { 
+			if (marker.event === event.id) {
+				marker.setMap(null);
+				marker = null;
+				view.markers.splice(index, 1);
+				return
+			};
+		})
 	}
 });

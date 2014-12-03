@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
             :longtitude, :latitude, presence: true
   
   def self.search(params)
+    return Event.all if params.nil? 
+    
     query_str, query_val = "", []
     if params["start_date"] != ""
       query_str += "start_time > ? AND " 
@@ -15,8 +17,8 @@ class Event < ActiveRecord::Base
     end
     
     if params["tag"] != ""
-      query_str += "category ILIKE ?"
-      query_val << "%" + params["tag"] + "%"
+      query_str += "(category ILIKE ? OR title ILIKE ?)"
+      2.times { query_val << "%" + params["tag"] + "%" }
     end
 
     Event.where(query_str.gsub(/ AND $/, ''), *query_val)
