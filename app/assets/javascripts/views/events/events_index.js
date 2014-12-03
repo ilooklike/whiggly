@@ -5,7 +5,6 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		this.mapView.initializeMap();
 		//TODO space out the initial pin drops
 		this.listenToOnce(this.collection, "sync", this.drop);
-		// 
 		this.listenTo(this.collection, "remove", this.removeMarker);
 		this.markers = [];
 		this.openIcon = '/assets/apple-eyes-icon.png';
