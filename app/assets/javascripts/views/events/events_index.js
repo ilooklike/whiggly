@@ -3,12 +3,13 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 	initialize: function() {
 		this.mapView = new Whiggly.Views.Map();
 		this.mapView.initializeMap();
-		//TODO space out the initial pin drops
 		this.listenToOnce(this.collection, "sync", this.drop);
 		this.listenTo(this.collection, "remove", this.removeMarker);
 		this.markers = [];
 		this.openIcon = '/assets/apple-eyes-icon.png';
+		this.hoverOpen = '/assets/apple-eyes-hover.png';
 		this.closedIcon = '/assets/pin.png';
+		this.hoverIcon = '/assets/pin-hover.png';
 	},
 	
 	drop: function(events) {
@@ -27,6 +28,7 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 	},
 	
 	addMarker: function(event) {
+				//TODO space out the additional pin drops
 		var lagLng = new google.maps.LatLng(event.escape('latitude'),
 																				event.escape('longtitude')
 																				);
@@ -59,13 +61,23 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 		);
 		
 		//bounce when mouseover pins
-		google.maps.event.addListener(marker, "mouseover", function() {
-			marker.setAnimation(google.maps.Animation.BOUNCE);
-		})
+		google.maps.event.addListener(marker, "mouseover", (function() {
+			if (this._marker !== marker) {
+				marker.setIcon(this.hoverIcon);
+				marker.setZIndex(5)
+			} else {
+				marker.setIcon(this.hoverOpen)
+			}
+		}).bind(this));
 
-		google.maps.event.addListener(marker, "mouseout", function() {
-			marker.setAnimation();
-		})
+		google.maps.event.addListener(marker, "mouseout", (function() {
+			if (this._marker !== marker) {
+				marker.setIcon(this.closedIcon);
+				marker.setZIndex(0)	;
+			}	else {
+				marker.setIcon(this.openIcon)
+			}
+		}).bind(this));
 		
 		this.markers.push(marker);
 	},
@@ -73,12 +85,12 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 	changeCurrentMarker: function(marker) {
 		if (this._marker) {
 			this._marker.setIcon(this.closedIcon)
+			this._marker.setZIndex(0)
 		}
 		
 		this._marker = marker;
 		marker.setIcon(this.openIcon);
-		marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1)
-	
+		marker.setZIndex(10)	
 	},
 	
 	//add popup boxes 
@@ -89,6 +101,16 @@ Whiggly.Views.EventsIndex = Backbone.View.extend({
 			maxWidth: 220
 		});		
 		
+		//revert to closed pin if window closed
+		google.maps.event.addListener(info, "closeclick", (function() {
+			var view = this;
+			this.markers.forEach(function(marker) { 
+				if (marker.event === event.id) {
+					marker.setIcon(view.closedIcon);
+					return;
+				};
+			})
+		}).bind(this));
 		return info;
 	},
 	
