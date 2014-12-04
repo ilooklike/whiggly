@@ -41,8 +41,10 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	render: function() {
 		var content = this.template;
 		this.$el.html(content);
-		this.attachSubviews() //--why are they already attached? with add event?
-	  // this.$('#event-list').accordion();
+		this.attachSubviews()
+	  this.$('#event-list').accordion({
+      collapsible: true
+    });
 		// $( "#text-box" ).accordion({
 		// 	       event: "click hoverintent"
 		//      });

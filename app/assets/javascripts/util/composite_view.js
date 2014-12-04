@@ -26,7 +26,9 @@ Backbone.CompositeView = Backbone.View.extend({
 		_(view.subviews()).each(function(subviews, selector) {
 			view.$(selector).empty();
 			_(subviews).each(function(subview) {
-				view.$(selector).append(subview.render().$el);
+				//allows for accordion
+				view.$(selector).append(subview.render().$("h3"));
+				view.$(selector).append(subview.render().$("div"));
 			})
 		})
 	},
