@@ -121,7 +121,7 @@ p.navbar-brand {
 #side-content {
 	transition: all 1s;
 	overflow: hidden;
-	
+	background: white;
 	border: 1px solid red;
 	height: 100%;
 	top: 0px;
@@ -134,6 +134,11 @@ p.navbar-brand {
 	position: relative;
 	top: 50%;
 	transform: translateY(-50%)
+}
+
+.event-list-item {
+	background: white;
+	border-bottom: 1px solid lightgrey;
 }
 
 //#search-box {
@@ -362,7 +367,3 @@ p.navbar-brand {
 	cursor: default;
 }
 
-.event-list-item {
-	background: white;
-	border-bottom: 1px solid lightgrey;
-}

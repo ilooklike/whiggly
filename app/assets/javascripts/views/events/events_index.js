@@ -43,11 +43,9 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		this.$el.html(content);
 		this.attachSubviews()
 	  this.$('#event-list').accordion({
-      collapsible: true
+      collapsible: true,
+			heightStyle: "content" 
     });
-		// $( "#text-box" ).accordion({
-		// 	       event: "click hoverintent"
-		//      });
 		return this;
 	}
 	
