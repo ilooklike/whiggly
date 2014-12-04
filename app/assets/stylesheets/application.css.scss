@@ -116,15 +116,18 @@ p.navbar-brand {
 	overflow: hidden;
 	position: absolute;
 	right: 0%;
-	width: 20px;
+	width: 50px;
 	height: 100%;
 	top: 0;
-//	border: 1px solid;
 	&:hover {
-		width: 400px;
+		width: 410px;
 		#side-content {
-			margin-left: 10%;
+			margin-left: 11%;
 			overflow-y: auto;
+		}
+		#arrow {
+			box-shadow: inset 0px 0px 1px 1px #E06666;
+			background: #FAFAFA;
 		}
 	}
 }
@@ -133,19 +136,32 @@ p.navbar-brand {
 	transition: all 1s;
 	overflow: hidden;
 	background: white;
-//	border: 1px solid red;
 	height: 100%;
 	top: 0px;
 	margin-left: 100%;
 	width: 380px;
+	position: absolute;
+	z-index: 1;
 }
  
 #arrow {
+	transition: box-shadow .25s ease;
 	font-size: 30px;
-	float: left;
-	position: relative;
+	position: absolute;
 	top: 50%;
-	transform: translateY(-50%)
+	transform: translateY(-50%);
+	left: -4px;
+	margin-left: 5px;
+	background: white;
+	border-radius: 30px;
+	height: 50px;
+	width: 200px;
+}
+
+#arrow span {
+	color: #CC0000;
+	margin-left: 9px;
+	margin-top: 9px;
 }
 
 #event-list {

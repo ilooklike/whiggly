@@ -45,7 +45,8 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	  this.$('#event-list').accordion({
       collapsible: true,
 			heightStyle: "content",
-			event: "click hoverintent" 
+			event: "click hoverintent",
+			active: false 
     });
 		
 	  $("#event-list h3 a").click(function() {
@@ -57,7 +58,7 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	
 });
 
-//TODO put this in vendor
+
 /*
  * hoverIntent | Copyright 2011 Brian Cherne
  * http://cherne.net/brian/resources/jquery.hoverIntent.html
@@ -124,3 +125,4 @@ $.event.special.hoverintent = {
       });
     }
   };
+
