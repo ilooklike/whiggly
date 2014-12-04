@@ -176,12 +176,12 @@ Whiggly.Views.Map = Backbone.View.extend({
 		function delayRemove() {
 			event.marker.setMap(null);
 			event.marker = null;
-			view.markers.splice(i, 1);
+			this.markers.splice(i, 1);
 		}
 
 		event.marker.setAnimation(google.maps.Animation.BOUNCE);
 		var i = this.markers.indexOf(event.marker)
-		setTimeout(delayRemove, (this.markers.length - i) * 50)	
+		setTimeout(delayRemove.bind(this), (this.markers.length - i) * 50)	
 	}
 
 });

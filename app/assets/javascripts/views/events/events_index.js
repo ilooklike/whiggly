@@ -36,4 +36,10 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		this.listenTo(this.collection, "add", this.mapView.addMarker.bind(this.mapView));
 	},
 	
+	render: function() {
+		var content = this.template({ event: this.model });
+		this.$el.html(content);
+		return this;
+	}
+	
 });

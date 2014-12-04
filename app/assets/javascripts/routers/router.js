@@ -5,6 +5,7 @@ Whiggly.Routers.Router = Backbone.Router.extend({
 	
 	initialize: function(options) {
 		this.$mainEl = options.$mainEl
+		this.$sideBar = options.$sideBar
 		$( ".datepicker" ).datepicker();
 	}, 
 	
@@ -12,7 +13,8 @@ Whiggly.Routers.Router = Backbone.Router.extend({
 		var params = this._parseParams(str)
 		Whiggly.Events.fetch({ data: {search: params }});
 		if (!this._indexView) {
-			this._indexView = new Whiggly.Views.EventsIndex({ collection: Whiggly.Events })
+			this._indexView = new Whiggly.Views.EventsIndex({ collection: Whiggly.Events });
+			this._swapView(this._indexView.render().$el);
 		}
 	},        
 
@@ -31,7 +33,7 @@ Whiggly.Routers.Router = Backbone.Router.extend({
 			this.currentView.remove();
 		}
 	
-		this.$mainEl.html(newView);
+		this.$sideBar.html(newView);
 	
 		this.currentView = newView;
 	},
