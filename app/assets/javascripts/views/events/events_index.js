@@ -2,24 +2,25 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	template: JST['events/index'],
 	
 	initialize: function() {
+		//initialize the map
 		this.mapView = new Whiggly.Views.Map();
 		this.mapView.initializeMap();
+		this.listenToOnce(this.collection, "sync", this.drop);
+		this.listenTo(this.collection, "remove", this.mapView.removeMarker.bind(this.mapView));
 		
-		// this.selector = "#side-content"
-		// this.subviews(this.selector);
+		//render sidebar
 		this.listenTo(this.collection, "add", this.addEvent);
-		this.listenTo(this.collection, "sync", this.render)
+		this.listenTo(this.collection, "sync", this.render);
 		this.collection.each((function(event) {
 			this.addList(event)
 		}).bind(this));
+		//TODO add remove event from listing
 		
-		this.listenToOnce(this.collection, "sync", this.drop);
-		this.listenTo(this.collection, "remove", this.mapView.removeMarker.bind(this.mapView));
 	},
 	
 	addEvent: function(event) {
 		var subview = new Whiggly.Views.EventItem( { model: event });
-		this.addSubview("#side-content", subview);
+		this.addSubview("#event-list", subview);
 	},
 		
 	drop: function(events) {
@@ -40,7 +41,11 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	render: function() {
 		var content = this.template;
 		this.$el.html(content);
-		this.attachSubviews()
+		this.attachSubviews() //--why are they already attached? with add event?
+	  // this.$('#event-list').accordion();
+		// $( "#text-box" ).accordion({
+		// 	       event: "click hoverintent"
+		//      });
 		return this;
 	}
 	

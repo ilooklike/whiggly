@@ -1,5 +1,5 @@
-<div class="text-box">
-<h3><a href="https://github.com/ranicas"><%= event.escape("title") %></a></h3>
+<h3><%= event.escape("title") %></h3>
+<div>
 <dl>	
 	<dt>When:</dt>
 	<dd class="info-text">
@@ -8,7 +8,7 @@
 				(new Date(event.escape('end_time'))).toLocaleTimeString() + " " + 
 				(new Date(event.escape('end_time'))).toLocaleDateString() %>
 	</dd>
-</dl>
+</dl>*
 <dl>
 	<dt>Where:</dt>
 	<dd class="info-text">

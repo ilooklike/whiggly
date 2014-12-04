@@ -15,6 +15,7 @@
 //= require jquery.ui.sortable
 //= require jquery.ui.datepicker
 //= require jquery.ui.autocomplete
+//= require jquery.ui.accordion
 //= require jquery.serializejson
 //= require underscore
 //= require backbone
