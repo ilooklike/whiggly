@@ -45,11 +45,23 @@ body {
 	width: 100%;
 	margin: 0; 
 	padding: 0; 
+	min-width: 900px;
+}
+
+#main {
+	min-width: 900px;
+}
+
+.navbar-right {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 140px;
 }
 
 .cust-nav {
 	margin: 0px;
-	//background: rgba(0,0,0,0.4);
+	min-width: 900px;
 }
 
 a.navbar-brand {
@@ -104,12 +116,12 @@ p.navbar-brand {
 	overflow: hidden;
 	position: absolute;
 	right: 0%;
-	width: 2%;
+	width: 20px;
 	height: 100%;
 	top: 0;
 //	border: 1px solid;
 	&:hover {
-		width: 40%;
+		width: 400px;
 		#side-content {
 			margin-left: 10%;
 			overflow-y: auto;
@@ -121,10 +133,11 @@ p.navbar-brand {
 	transition: all 1s;
 	overflow: hidden;
 	background: white;
-	border: 1px solid red;
+//	border: 1px solid red;
 	height: 100%;
 	top: 0px;
 	margin-left: 100%;
+	width: 380px;
 }
  
 #arrow {
@@ -135,17 +148,34 @@ p.navbar-brand {
 	transform: translateY(-50%)
 }
 
+#event-list {
+	margin-top: 5px;
+	border-left: 1px solid lightgrey;
+}
+
 #event-list h3 {
 	margin: 0px 10px;
 	padding: 20px;
 	border-bottom: 1px solid lightgrey;
+	font-size: 20px;
+	a {
+		color: black;
+		&:hover {
+			color: #CC0000;
+		}
+		&:active {
+			color: #f20303;
+		};
+	}
 }
+
 
 #event-list div {
 	margin: 2px 10px;
 	border: 1px solid lightgrey;
 	border-radius: 2px;
 	padding: 10px;
+	background-color: #FCFCFC;
 }
 //.event-list-item {
 //	background: white;
@@ -191,6 +221,10 @@ p.navbar-brand {
 
 
 #search-form {
+	top: 0;
+	position: absolute;
+	left: 54%;
+	transform: translateX(-50%);
 	overflow: hidden;
   transition: all .6s;
 	white-space: nowrap;
@@ -202,8 +236,6 @@ p.navbar-brand {
 	outline: none;
   &:hover {
 		background-color: #F2F2F2;
-		position: relative;
-		left: 0%;
 		border: 1px solid white;
 		button {
 //			right: 0%;
