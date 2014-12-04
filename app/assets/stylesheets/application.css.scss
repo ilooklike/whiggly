@@ -120,13 +120,12 @@ p.navbar-brand {
 	height: 100%;
 	top: 0;
 	&:hover {
-		width: 410px;
+		width: 427px;
 		#side-content {
 			margin-left: 11%;
 			overflow-y: auto;
 		}
 		#arrow {
-			box-shadow: inset 0px 0px 1px 1px #E06666;
 			background: #FAFAFA;
 		}
 	}

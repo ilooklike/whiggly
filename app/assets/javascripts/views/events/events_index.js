@@ -19,7 +19,7 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	},
 	
 	addEvent: function(event) {
-		var subview = new Whiggly.Views.EventItem( { model: event });
+		var subview = new Whiggly.Views.EventItemList( { model: event });
 		this.addSubview("#event-list", subview);
 	},
 		
