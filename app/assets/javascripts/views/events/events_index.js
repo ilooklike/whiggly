@@ -1,11 +1,12 @@
 Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
+	template: JST['events/index'],
 	
 	initialize: function() {
 		this.mapView = new Whiggly.Views.Map();
 		this.mapView.initializeMap();
 		
-		this.selector = "#side-content"
-		this.subviews(this.selector);
+		// this.selector = "#side-content"
+		// this.subviews(this.selector);
 		this.listenTo(this.collection, "add", this.addEvent);
 		
 		this.collection.each((function(event) {
@@ -18,7 +19,7 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	
 	addEvent: function(event) {
 		var subview = new Whiggly.Views.EventItem( { model: event });
-		this.addSubview(this.selector, subview);
+		this.addSubview("#side-content", subview);
 	},
 		
 	drop: function(events) {
@@ -39,6 +40,7 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	render: function() {
 		var content = this.template({ event: this.model });
 		this.$el.html(content);
+		this.attachSubviews()
 		return this;
 	}
 	
