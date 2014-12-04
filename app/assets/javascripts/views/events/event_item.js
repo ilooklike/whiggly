@@ -1,5 +1,5 @@
 Whiggly.Views.EventItem = Backbone.View.extend({
-	className: "event-list-item",
+	// className: "event-list-item",
 	template: JST['events/item_list'],
 	
 	render: function() {
