@@ -2,10 +2,9 @@ Whiggly.Views.EventShow = Backbone.View.extend({
 	className: "event-show",
 	template: JST['events/show'],
 	
-	// render: function() {
-	// 	var content = this.template({ event: this.model });
-	// 	debugger
-	// 	this.$el.html(content);
-	// 	return this;
-	// }
+	render: function() {
+		var content = this.template({ event: this.model });
+		this.$el.html(content);
+		return this;
+	}
 });

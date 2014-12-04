@@ -69,16 +69,119 @@ Whiggly.Views.Map = Backbone.View.extend({
 		this.map.mapTypes.set('map_style', styledMap);
 		this.map.setMapTypeId('map_style');
 		
-		//going for stylized map over terrain, so no longer need to toggle
-		// google.maps.event.addListener(this.map, "zoom_changed", (function() {
-// 			if (this.map.zoom >= 15) {
-// 				this.map.setMapTypeId(google.maps.MapTypeId.ROADMAP)
-// 			} else {
-// 				this.map.setMapTypeId(google.maps.MapTypeId.TERRAIN)
-// 			}
-// 		}).bind(this))
-	}
+		this.markers = [];
+		this.openIcon = '/assets/apple-eyes-icon.png';
+		this.hoverOpen = '/assets/apple-eyes-hover.png';
+		this.closedIcon = '/assets/pin.png';
+		this.hoverIcon = '/assets/pin-hover.png';
+	},
 	
-	//TODO map center being a cumulation
+	//TODO map centering based on points
+	
+	addMarker: function(event) {
+				//TODO space out the additional pin drops
+		var lagLng = new google.maps.LatLng(event.escape('latitude'),
+																				event.escape('longtitude')
+																				);
+																				
+		var marker = new google.maps.Marker({
+			position: lagLng,
+			map: this.map,
+			draggable: false,
+			animation: google.maps.Animation.DROP,
+			icon: this.closedIcon,
+			event: event.id
+		});
+		
+		//add reference to marker in event
+		event.marker = marker; 
+		
+		//click marker opens info window and changes marker icon
+		google.maps.event.addListener(marker, "click", (function() {
+			this._clickMarker(marker, event)
+		}).bind(this));
+		
+		//highlight marker when mouseover pins
+		google.maps.event.addListener(marker, "mouseover", (function() {
+			if (this._marker && this._marker === marker) {
+				marker.setIcon(this.hoverOpen)
+			} else {
+				marker.setIcon(this.hoverIcon);
+				marker.setZIndex(5)
+			}
+		}).bind(this));
+
+		google.maps.event.addListener(marker, "mouseout", (function() {
+			if (this._marker && this._marker === marker) {
+				marker.setIcon(this.openIcon)
+			}	else {
+				marker.setIcon(this.closedIcon);
+				marker.setZIndex(0)	;
+			}
+		}).bind(this));
+
+		this.markers.push(marker);
+	},
+	
+	_clickMarker: function(marker, event) {
+			if (this._infoWindow) {
+				this._infoWindow.close();
+			}
+			
+			//toggle close when clicked on the same marker		
+			if (this._marker === marker) {
+				this._marker = null;
+				marker.setIcon(this.closedIcon);
+				return
+			}
+			
+			this._changeToCurrentMarker(marker);
+			this._infoWindow && this._infoWindow.infoView.remove(); //remove the last view
+			this._infoWindow = this._openInfoWindow(event);
+			this._infoWindow.open(this.map, marker);
+	},
+	
+	
+	_changeToCurrentMarker: function(marker) {
+		if (this._marker) {
+			this._marker.setIcon(this.closedIcon)
+			this._marker.setZIndex(0)
+		}
+		
+		this._marker = marker;
+		marker.setIcon(this.openIcon);
+		marker.setZIndex(10)	
+	},
+	
+	//add popup boxes 
+	_openInfoWindow: function(event) {	
+		var infoView = new Whiggly.Views.EventItem({ model: event });
+		//TODO handle removal? 
+		var info = new google.maps.InfoWindow({
+			content: infoView.template({ event: event }),
+			maxWidth: 220,
+			infoView: infoView
+		});		
+		
+		//revert to closed pin if window closed using "x"
+		google.maps.event.addListener(info, "closeclick", (function() {
+			event.marker.setIcon(this.closedIcon);
+			this._marker = null 
+		}).bind(this))
+
+		return info;
+	},
+	
+	removeMarker: function(event) {
+		function delayRemove() {
+			event.marker.setMap(null);
+			event.marker = null;
+			view.markers.splice(i, 1);
+		}
+
+		event.marker.setAnimation(google.maps.Animation.BOUNCE);
+		var i = this.markers.indexOf(event.marker)
+		setTimeout(delayRemove, (this.markers.length - i) * 50)	
+	}
 
 });
