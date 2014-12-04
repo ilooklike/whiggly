@@ -8,7 +8,7 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		// this.selector = "#side-content"
 		// this.subviews(this.selector);
 		this.listenTo(this.collection, "add", this.addEvent);
-		
+		this.listenTo(this.collection, "sync", this.render)
 		this.collection.each((function(event) {
 			this.addList(event)
 		}).bind(this));
@@ -38,7 +38,7 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	},
 	
 	render: function() {
-		var content = this.template({ event: this.model });
+		var content = this.template;
 		this.$el.html(content);
 		this.attachSubviews()
 		return this;

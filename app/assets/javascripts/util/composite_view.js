@@ -2,7 +2,7 @@ Backbone.CompositeView = Backbone.View.extend({
 	//just handle one layer, does not handle if subview has subviews
 	addSubview: function(selector, subview) {
 		this.subviews(selector).push(subview);
-		this.$(selector).append(subview.render().$el);
+		$(selector).append(subview.render().$el);
 		subview.delegateEvents();
 	},
 	
@@ -14,10 +14,10 @@ Backbone.CompositeView = Backbone.View.extend({
 	
 	attachSubviews: function() {
 		var view = this;
-		_(view.subviews()).each(function(selector, subviews) {
-			view.$(selector).empty();
+		_(view.subviews()).each(function(subviews, selector) {
+			$(selector).empty();
 			_(subviews).each(function(subview) {
-				view.$(selector).append(subview.render().$el);
+				$(selector).append(subview.render().$el);
 			})
 		})
 	},

@@ -111,7 +111,8 @@ p.navbar-brand {
 
 #side-content {
 	transition: all 1s;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 	border: 1px solid red;
 	height: 100%;
 	top: 0px;
