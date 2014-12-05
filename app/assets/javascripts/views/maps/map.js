@@ -57,8 +57,8 @@ Whiggly.Views.Map = Backbone.View.extend({
 		var styledMap = new google.maps.StyledMapType(styles, { name: "Whiggly Map" });
 							
 		var mapOptions = {
-			zoom: 13,
-			center: new google.maps.LatLng(37.7632668,-122.434624),
+			zoom: 12,
+			center: new google.maps.LatLng(37.8358543,-122.3917574),
 			mapTypeControlOptions: {
 				mapTypeIds: [
 										 google.maps.MapTypeId.TERRAIN, 
@@ -186,7 +186,7 @@ Whiggly.Views.Map = Backbone.View.extend({
 
 		event.marker.setAnimation(google.maps.Animation.BOUNCE);
 		var i = this.markers.indexOf(event.marker)
-		setTimeout(delayRemove.bind(this), (this.markers.length - i) * 50)	
+		setTimeout(delayRemove.bind(this), (this.markers.length - i) * 200)	
 	},
 
   showStreetView: function(event) {
