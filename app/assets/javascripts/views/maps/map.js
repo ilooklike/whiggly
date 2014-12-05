@@ -1,4 +1,7 @@
 Whiggly.Views.Map = Backbone.View.extend({
+	events: {
+		'click .img-wrap': 'showStreetView'
+	},
 	
 	initializeMap: function () {
 		var styles = [
@@ -186,4 +189,7 @@ Whiggly.Views.Map = Backbone.View.extend({
 		setTimeout(delayRemove.bind(this), (this.markers.length - i) * 50)	
 	},
 
+  showStreetView: function(event) {
+  	debugger
+  }
 });

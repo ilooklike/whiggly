@@ -4,7 +4,7 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	events: {
       'mouseenter h3 a': 'lightMarker',
       'mouseleave h3 a': 'unlitMarker',
-			'click img': 'showStreetView'
+			'click .img-wrap': 'showStreetView'
 	},
 	
 	initialize: function() {
@@ -84,6 +84,10 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		marker.setIcon(this.mapView.closedIcon);
 		marker.setZIndex(0);
 	},
+	
+	showStreetView: function(event) {
+		debugger
+	}
 	
 });
 
