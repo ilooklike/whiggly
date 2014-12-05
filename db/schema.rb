@@ -11,28 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126222548) do
+ActiveRecord::Schema.define(version: 20141205073840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "events", force: true do |t|
-    t.string   "title",                     null: false
-    t.text     "description",               null: false
-    t.datetime "start_time",                null: false
-    t.datetime "end_time",                  null: false
-    t.string   "category",                  null: false
-    t.float    "cost",        default: 0.0
+    t.string   "title",           null: false
+    t.text     "description",     null: false
+    t.string   "category",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "venue_title"
     t.string   "address"
-    t.float    "longtitude",                null: false
-    t.float    "latitude",                  null: false
+    t.float    "longtitude",      null: false
+    t.float    "latitude",        null: false
+    t.text     "imageURL"
+    t.date     "date"
+    t.integer  "created_user_id"
   end
-
-  add_index "events", ["end_time"], name: "index_events_on_end_time", using: :btree
-  add_index "events", ["start_time"], name: "index_events_on_start_time", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false

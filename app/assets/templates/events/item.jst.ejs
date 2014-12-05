@@ -1,12 +1,19 @@
 <div class="text-box">
 <h3><a href="https://github.com/ranicas"><%= event.escape("title") %></a></h3>
+<div class="img-wrap">
+	<img src="<%= event.escape("imageURL") %>" class="img-rounded" >
+</div>
+
+<dl>
+	<dt>category:</dt>
+	<dd class="info-text"> 
+		<%= event.escape("category") %>
+	</dd>
+</dl>
 <dl>	
 	<dt>When:</dt>
 	<dd class="info-text">
-		<%= (new Date(event.escape('start_time'))).toLocaleTimeString() + " " + 
-				(new Date(event.escape('start_time'))).toLocaleDateString() + " -- " +
-				(new Date(event.escape('end_time'))).toLocaleTimeString() + " " + 
-				(new Date(event.escape('end_time'))).toLocaleDateString() %>
+		<%= (new Date(event.escape('date'))).toLocaleDateString() %>
 	</dd>
 </dl>
 <dl>
@@ -16,12 +23,7 @@
 		<%= event.escape('address') %>
 	</dd>
 </dl>
-<dl>
-	<dt>Cost:</dt>
-	<dd class="info-text"> 
-		$<%= event.escape("cost") %>
-	</dd>
-</dl>
+
 <dl>
 	<dt>Description: </dt><br>
 	<%= event.escape("description").substr(0,150) + "..." %>

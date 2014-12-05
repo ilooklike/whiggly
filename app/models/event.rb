@@ -1,6 +1,13 @@
 class Event < ActiveRecord::Base
-  validates :title, :description, :start_time, :end_time, :category, 
+  validates :title, :description, :created_user, :category, 
             :longtitude, :latitude, presence: true
+            
+  belongs_to(
+    :created_user,
+    foreign_key: :created_user_id,
+    primary_key: :id,
+    class_name: 'User'  
+  )
   
   def self.search(params)
     return Event.all if params.nil? 

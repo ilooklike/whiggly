@@ -6,6 +6,13 @@ class User < ActiveRecord::Base
   attr_reader :password
   before_validation :ensure_session_token
   
+  has_many(
+    :created_events,
+    foreign_key: :created_user_id,
+    primary_key: :id,
+    class_name: 'Event' 
+  )
+  
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     

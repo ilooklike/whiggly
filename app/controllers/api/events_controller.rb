@@ -1,6 +1,7 @@
 module Api
   class EventsController < ApiController
     def create
+      #TODO create using current_user
       @event = Event.new(event_params)
       
       if @event.save
