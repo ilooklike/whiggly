@@ -61,13 +61,14 @@ Whiggly.Views.Map = Backbone.View.extend({
 										 google.maps.MapTypeId.TERRAIN, 
 										 google.maps.MapTypeId.ROADMAP,
 										 'map_style'
-				]
-			}	
+				],
+			},
 		};
 
 		this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		this.map.mapTypes.set('map_style', styledMap);
 		this.map.setMapTypeId('map_style');
+		
 		
 		this.markers = [];
 		this.openIcon = '/assets/apple-eyes-icon.png';
@@ -183,6 +184,6 @@ Whiggly.Views.Map = Backbone.View.extend({
 		event.marker.setAnimation(google.maps.Animation.BOUNCE);
 		var i = this.markers.indexOf(event.marker)
 		setTimeout(delayRemove.bind(this), (this.markers.length - i) * 50)	
-	}
+	},
 
 });

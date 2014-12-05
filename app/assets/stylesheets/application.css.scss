@@ -122,12 +122,12 @@ p.navbar-brand {
 
 #side-bar {
 	transition: all 1s;
-	overflow: hidden;
+//	overflow: hidden;
 	position: absolute;
 	right: 0%;
 	width: 50px;
 	height: 100%;
-	top: 0;
+	top: 30px;
 	&:hover {
 		width: 427px;
 		#side-content {
@@ -145,7 +145,7 @@ p.navbar-brand {
 	overflow: hidden;
 	background: white;
 	height: 100%;
-	top: 0px;
+	top: -30px;
 	margin-left: 100%;
 	width: 380px;
 	position: absolute;

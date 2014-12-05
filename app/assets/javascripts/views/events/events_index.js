@@ -3,7 +3,8 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	
 	events: {
       'mouseenter h3 a': 'lightMarker',
-      'mouseleave h3 a': 'unlitMarker'
+      'mouseleave h3 a': 'unlitMarker',
+			'click img': 'showStreetView'
 	},
 	
 	initialize: function() {
@@ -52,7 +53,6 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	},
 	
 	removeEvent: function(event) {
-		//not working properly probably?
 		var subview = _(this.subviews('#event-list')).find(function(subview) {
 			return subview.model === event;
 		});
