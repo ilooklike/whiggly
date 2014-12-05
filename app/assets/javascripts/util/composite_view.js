@@ -8,8 +8,9 @@ Backbone.CompositeView = Backbone.View.extend({
 	
 	removeSubview: function(selector, subview) {
 		subview.remove();
-		var i = this.subviews(selector).indexOf(subview);
-		this.subviews(selector).splice(i, 1);
+		var subviews = this.subviews(selector);
+		console.log(subviews.indexOf(subview));
+		subviews.splice(subviews.indexOf(subview), 1); //can't find the subview and still slicing
 	},
 	
 	remove: function() {

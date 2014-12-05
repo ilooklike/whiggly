@@ -51,9 +51,12 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		marker.setZIndex(5);
 	},
 	
-	removeEvent: function() {
+	removeEvent: function(event) {
 		//not working properly probably?
-		var subview = new Whiggly.Views.EventItemList( { model: event });
+		var subview = _(this.subviews('#event-list')).find(function(subview) {
+			return subview.model === event;
+		});
+		
 		this.removeSubview("#event-list", subview);
 	},
 	
