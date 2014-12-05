@@ -1,6 +1,11 @@
 Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	template: JST['events/index'],
 	
+	events: {
+      'mouseenter h3 a': 'lightMarker',
+      'mouseleave h3 a': 'unlitMarker'
+	},
+	
 	initialize: function() {
 		//initialize the map
 		this.mapView = new Whiggly.Views.Map();
@@ -39,6 +44,13 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		this.listenTo(this.collection, "add", this.mapView.addMarker.bind(this.mapView));
 	},
 	
+	lightMarker: function(event) {
+		var id = $(event.currentTarget).data("id");
+		var marker = this.collection.get(id).marker;
+		marker.setIcon(this.mapView.hoverList);
+		marker.setZIndex(5);
+	},
+	
 	removeEvent: function() {
 		var subview = new Whiggly.Views.EventItemList( { model: event });
 		this.removeSubview("#event-list", subview);
@@ -60,7 +72,14 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	       return false;
 	    });
 		return this;
-	}
+	},
+	
+	unlitMarker: function(event) {
+		var id = $(event.currentTarget).data("id");
+		var marker = this.collection.get(id).marker;
+		marker.setIcon(this.mapView.closedIcon);
+		marker.setZIndex(0);
+	},
 	
 });
 

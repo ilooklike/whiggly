@@ -74,6 +74,7 @@ Whiggly.Views.Map = Backbone.View.extend({
 		this.hoverOpen = '/assets/apple-eyes-hover.png';
 		this.closedIcon = '/assets/pin.png';
 		this.hoverIcon = '/assets/pin-hover.png';
+		this.hoverList = '/assets/pin-hover-list.png';
 	},
 	
 	//TODO map centering based on points
