@@ -249,6 +249,7 @@ p.navbar-brand {
 	position: absolute;
 	left: 54%;
 	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
 	overflow: hidden;
   transition: all .6s;
 	white-space: nowrap;
