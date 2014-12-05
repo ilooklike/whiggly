@@ -16,6 +16,7 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		}).bind(this));
 		//TODO add remove event from listing
 		
+		this.listenTo(this.collection, "remove", this.removeEvent);	
 	},
 	
 	addEvent: function(event) {
@@ -36,6 +37,11 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		}
 		
 		this.listenTo(this.collection, "add", this.mapView.addMarker.bind(this.mapView));
+	},
+	
+	removeEvent: function() {
+		var subview = new Whiggly.Views.EventItemList( { model: event });
+		this.removeSubview("#event-list", subview);
 	},
 	
 	render: function() {
