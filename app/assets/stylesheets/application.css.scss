@@ -15,10 +15,9 @@
  */
 @import "bootstrap";
 @import "font-awesome";
-//* {
-//	color: #CC0000;
-//}
-
+*:focus {
+	outline: none !important;
+}
 
 a {
 	color: #CC0000;
@@ -52,16 +51,15 @@ body {
 	min-width: 900px;
 }
 
-.navbar-right {
+.log-buttons {
 	position: absolute;
-	top: 0;
 	right: 0;
-	width: 140px;
 }
 
 .cust-nav {
 	margin: 0px;
 	min-width: 900px;
+	background: #FEFCFC;
 }
 
 a.navbar-brand {
@@ -80,6 +78,17 @@ p.navbar-brand {
 	color: #CC0000 !important;
 	font-size: 14px;
 	padding-top: 20px;
+}
+
+#demo-button {
+	float: right;
+	margin-top: -34px;
+	margin-right: 3px;
+	color: #CC0000;
+	font-weight: 500;
+	&:hover {
+		color: #f20303;
+	}
 }
 
 .whiggly-button {

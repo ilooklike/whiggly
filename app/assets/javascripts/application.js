@@ -21,6 +21,7 @@
 //= require backbone
 //= require bootstrap
 //= require whiggly
+//= require jquery.accordion
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ../templates

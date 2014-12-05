@@ -7,26 +7,29 @@
 				<p class="navbar-brand">Location Based Storytelling</p>
     </div>
 		
-		 <form class="navbar-form" role="search" id="search-form">
-			 <!-- <div class="form-group hide-form">
-				</div> -->
-				<input type="text" name="start_date"  class="datepicker" placeholder="Any Start Date">
-				<input type="text" name="end_date" class="datepicker" placeholder="Any End Date">
-				<!--TODO make this autocomplete -->
-				<input type="text" name="tag"id="tags" placeholder="category ex. 'monitor'">
-				
-				<button type="submit" id="search-button">
-				<span class="glyphicon glyphicon-search search-icon"></span>
-			</button>
-		</form>
-		
-		<ul class="nav navbar-nav navbar-right">
 <% if signed_in? %>
-	<li><button class="btn navbar-btn whiggly-button"><a href="https://github.com/ranicas">+</a></button></li>
+	 <form class="navbar-form" role="search" id="search-form">
+		 <!-- <div class="form-group hide-form">
+			</div> -->
+			<input type="text" name="start_date"  class="datepicker" placeholder="Any Start Date">
+			<input type="text" name="end_date" class="datepicker" placeholder="Any End Date">
+			<!--TODO make this autocomplete -->
+			<input type="text" name="tag"id="tags" placeholder="category ex. 'monitor'">
+			
+			<button type="submit" id="search-button">
+			<span class="glyphicon glyphicon-search search-icon"></span>
+		</button>
+	</form>
+		
+	<ul class="nav navbar-nav log-buttons">
+		<li><button class="btn navbar-btn whiggly-button"><a href="https://github.com/ranicas">+</a></button></li>
+	
 	<li><%= button_to "Sign out", session_url, method: :delete, class: "btn navbar-btn whiggly-button" %></li>
+	</ul>
 <% else %>
-  <li><%= link_to "Log in", new_session_url %></li>
-  <li><%= link_to "Sign up", new_user_url %></li>
+	<ul class="nav navbar-nav log-buttons">
+	  <li><%= link_to "Log in", new_session_url %></li>
+	  <li><%= link_to "Sign up", new_user_url %></li>
 <% end %>
 	</ul>
 </div>
