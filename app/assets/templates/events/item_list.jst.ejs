@@ -4,6 +4,8 @@
 	<img src="<%= event.escape("imageURL") %>" class="img-rounded" >
 
 	<div id="events/<%= event.id %>" class="event-show">
+	<div>
+	  <a href="#close" title="Close" class="close">X</a>
 		<img src="<%= event.escape("imageURL") %>" class="img-rounded" >
 				<dl>
 					<dt>category:</dt>
@@ -29,6 +31,7 @@
 					<dt>Description: </dt><br>
 					<%= event.escape("description") %>
 				</dl>
+	</div>
 	</div>
 </div> 
 
