@@ -1,0 +1,32 @@
+<div class="modal-backdrop">
+</div>
+
+
+<div class="modal-box">
+  <a href="#" title="Close" class="close">X</a>
+	<img src="<%= event.escape("imageURL") %>" class="img-rounded" >
+	<dl>
+		<dt>category:</dt>
+		<dd class="info-text">
+			<%= event.escape("category") %>
+		</dd>
+	</dl>
+	<dl>
+		<dt>When:</dt>
+		<dd class="info-text">
+			<%= (new Date(event.escape('date'))).toLocaleDateString() %>
+		</dd>
+	</dl>
+	<dl>
+		<dt>Where:</dt>
+		<dd class="info-text">
+			<%= event.escape('venue_title') %><br>
+			<%= event.escape('address') %>
+		</dd>
+	</dl>
+
+	<dl>
+		<dt>Description: </dt><br>
+		<%= event.escape("description") %>
+	</dl>
+</div>

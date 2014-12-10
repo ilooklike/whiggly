@@ -2,15 +2,24 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	template: JST['events/index'],
 	
 	events: {
-      'mouseenter h3 a': 'lightMarker',
-      'mouseleave h3 a': 'unlitMarker',
-			'click .img-wrap': 'showStreetView'
+    'mouseenter h3': 'lightMarker',
+    'mouseleave h3': 'unlitMarker',
+		'click h3': 'showModal'
+	},
+	
+	showModal: function (event) {
+		event.preventDefault();
+		var model = this.collection.get($(event.currentTarget).data('id'))
+	  this.modalView = this.modalView ||
+	    new Whiggly.Views.EventModal({ model: model });
+	  $('body').prepend(this.modalView.render().$el);
+	  this.modalView.delegateEvents();
 	},
 	
 	initialize: function() {
+		window.v = this;
 		//initialize the map
 		this.mapView = new Whiggly.Views.Map();
-		this.mapView.initializeMap();
 		this.listenToOnce(this.collection, "sync", this.drop);
 		this.listenTo(this.collection, "remove", this.mapView.removeMarker.bind(this.mapView));
 		
@@ -20,8 +29,8 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		this.collection.each((function(event) {
 			this.addList(event)
 		}).bind(this));
-		//TODO add remove event from listing
 		
+		//TODO add remove event from listing
 		this.listenTo(this.collection, "remove", this.removeEvent);	
 	},
 	
@@ -45,6 +54,11 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		this.listenTo(this.collection, "add", this.mapView.addMarker.bind(this.mapView));
 	},
 	
+	eventShow: function(event) {
+		event.preventDefault();
+		Backbone.history.navigate('/#', { trigger: true });
+	},
+	
 	lightMarker: function(event) {
 		var id = $(event.currentTarget).data("id");
 		var marker = this.collection.get(id).marker;
@@ -63,18 +77,20 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	render: function() {
 		var content = this.template;
 		this.$el.html(content);
-		this.attachSubviews()
+		this.attachSubviews();
+		
 	  this.$('#event-list').accordion({
       collapsible: true,
 			heightStyle: "content",
 			event: "click hoverintent",
-			active: false 
+			active: false, 
+			header: 'h3'
     });
 		
 	  $("#event-list h3 a").click(function() {
-	       window.location = $(this).attr('href');
-	       return false;
-	    });
+	    window.location = $(this).attr('href');
+	    return false;
+	  });
 		return this;
 	},
 	

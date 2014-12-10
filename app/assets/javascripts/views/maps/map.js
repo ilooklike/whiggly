@@ -2,8 +2,8 @@ Whiggly.Views.Map = Backbone.View.extend({
 	events: {
 		'click .img-wrap': 'showStreetView'
 	},
-	
-	initializeMap: function () {
+
+	initialize: function () {
 		var styles = [
 		    {
 		      featureType: "road",

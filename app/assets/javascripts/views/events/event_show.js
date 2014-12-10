@@ -1,3 +1,5 @@
+//expire after modal implementation
+
 Whiggly.Views.EventShow = Backbone.View.extend({
 	className: "event-show",
 	template: JST['events/show'],

@@ -8,7 +8,9 @@ window.Whiggly = {
 			$mainEl: $("div#main"),
 			$sideBar: $("#side-content")
 		});
+		
 		Backbone.history.start();
+		
 		$("#search-form").on("submit", function(event) {
 			event.preventDefault();
 			var query = $(event.currentTarget).serialize();

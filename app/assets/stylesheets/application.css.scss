@@ -128,7 +128,7 @@ p.navbar-brand {
 	right: 0%;
 	width: 50px;
 	height: 100%;
-	top: 30px;
+	top: 10%;
 	&:hover {
 		width: 427px;
 		#side-content {
@@ -146,7 +146,7 @@ p.navbar-brand {
 	//overflow: hidden;
 	background: white;
 	height: 100%;
-	top: -30px;
+	top: -10%;
 	margin-left: 100%;
 	width: 380px;
 	position: absolute;
@@ -157,8 +157,9 @@ p.navbar-brand {
 	transition: box-shadow .25s ease;
 	font-size: 30px;
 	position: absolute;
-	top: 50%;
+	top: 40%;
 	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
 	left: -4px;
 	margin-left: 5px;
 	background: white;
@@ -205,35 +206,27 @@ p.navbar-brand {
 
 #event-list img {
 	max-width: 320px;
-//	max-height: 100%;
 }
 
-.event-show {
-//	visibility: hidden;
+.modal-backdrop {
 	position: fixed;
-	font-family: Arial, Helvetica, sans-serif;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: rgba(0,0,0,0.8);
-	z-index: 99999;
-	opacity:0;
+	background: rgba(0,0,0,0.80);
 	-webkit-transition: opacity 400ms ease-in;
 	-moz-transition: opacity 400ms ease-in;
 	transition: opacity 400ms ease-in;
-	pointer-events: none;
-//	display: none;
 }
 
-.event-show:target {
-	opacity: 1;
-	pointer-events: auto;
-};
-
-.event-show > div {
-	width: 400px;
-	position: relative;
+.modal-box {
+	z-index: 99999;
+	width: 600px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
 	margin: 8% auto;
 	padding: 5px 20px 13px 20px;
 	border-radius: 10px;
@@ -266,20 +259,6 @@ p.navbar-brand {
 	background: #ffdada; 
 	color: #CC0000;
 }
-//.event-list-item {
-//	background: white;
-//	border-bottom: 1px solid lightgrey;
-//}
-
-//#search-box {
-//	position: absolute;
-//	border: 2px solid lightgrey;
-//	width: 400px;
-//	bottom: 50px;
-//	background-color: white;
-//	left: 34%;
-//	text-align: center;
-//}
 
 .login {
 	width: 250px;
@@ -307,11 +286,6 @@ p.navbar-brand {
 	width: 160px;
 	float: right;
 }
-
-//.img-wrap {
-//	width: 200px;
-//	height: 200px;
-//}
 
 .img-wrap img {
 	max-width: 100%;

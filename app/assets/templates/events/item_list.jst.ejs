@@ -1,37 +1,5 @@
-<h3><a href="#events/<%= event.id %>" data-id="<%= event.id %>"><%= event.escape("title") %></a></h3>
+<h3 data-id="<%= event.id %>"><%= event.escape("title") %></h3>
 <div class="event-list-item">
 	<%= event.escape("description").substr(0,150) + "..." %>
 	<img src="<%= event.escape("imageURL") %>" class="img-rounded" >
-
-	<div id="events/<%= event.id %>" class="event-show">
-	<div>
-	  <a href="#close" title="Close" class="close">X</a>
-		<img src="<%= event.escape("imageURL") %>" class="img-rounded" >
-				<dl>
-					<dt>category:</dt>
-					<dd class="info-text">
-						<%= event.escape("category") %>
-					</dd>
-				</dl>
-				<dl>
-					<dt>When:</dt>
-					<dd class="info-text">
-						<%= (new Date(event.escape('date'))).toLocaleDateString() %>
-					</dd>
-				</dl>
-				<dl>
-					<dt>Where:</dt>
-					<dd class="info-text">
-						<%= event.escape('venue_title') %><br>
-						<%= event.escape('address') %>
-					</dd>
-				</dl>
-
-				<dl>
-					<dt>Description: </dt><br>
-					<%= event.escape("description") %>
-				</dl>
-	</div>
-	</div>
-</div> 
-
+</div>
