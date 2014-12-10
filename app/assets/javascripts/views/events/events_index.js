@@ -89,7 +89,7 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		event.preventDefault();
 		var model = this.collection.get($(event.currentTarget).data('id'))
 	  this.modalView = this.modalView ||
-	    new Whiggly.Views.EventModal({ model: model });
+	    new Whiggly.Views.EventModal({ model: model, parentView: this });
 	  $('body').prepend(this.modalView.render().$el);
 	  this.modalView.delegateEvents();
 	},
