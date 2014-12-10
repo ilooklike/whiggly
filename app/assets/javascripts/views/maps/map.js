@@ -1,9 +1,14 @@
 Whiggly.Views.Map = Backbone.View.extend({
 	events: {
-		'click .img-wrap': 'showStreetView'
+		'click .img-wrap': 'showStreetView',
+		'click h3': 'showModal'
 	},
 
-	initialize: function () {
+	showModal: function() {
+		debugger
+	},
+	
+	initialize: function (options) {
 		var styles = [
 		    {
 		      featureType: "road",
@@ -67,7 +72,8 @@ Whiggly.Views.Map = Backbone.View.extend({
 				],
 			},
 		};
-
+    
+		this.indexView = options.indexView;
 		this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		this.map.mapTypes.set('map_style', styledMap);
 		this.map.setMapTypeId('map_style');
@@ -144,18 +150,19 @@ Whiggly.Views.Map = Backbone.View.extend({
 			this._infoWindow && this._infoWindow.infoView.remove(); //remove the last view
 			this._infoWindow = this._openInfoWindow(event);
 			this._infoWindow.open(this.map, marker);
+
 	},
 	
 	
 	_changeToCurrentMarker: function(marker) {
 		if (this._marker) {
-			this._marker.setIcon(this.closedIcon)
-			this._marker.setZIndex(0)
+			this._marker.setIcon(this.closedIcon);
+			this._marker.setZIndex(0);
 		}
 		
 		this._marker = marker;
 		marker.setIcon(this.openIcon);
-		marker.setZIndex(10)	
+		marker.setZIndex(10);	
 	},
 	
 	//add popup boxes 
@@ -168,10 +175,16 @@ Whiggly.Views.Map = Backbone.View.extend({
 			infoView: infoView
 		});		
 		
+		var mapView = this;
+		google.maps.event.addListener(info, 'domready', function() {
+			$('#info-header').on("click", function(e) { 
+				mapView.indexView.showModal(e) 
+			})
+		});
 		//revert to closed pin if window closed using "x"
 		google.maps.event.addListener(info, "closeclick", (function() {
 			event.marker.setIcon(this.closedIcon);
-			this._marker = null 
+			this._marker = null;
 		}).bind(this))
 
 		return info;

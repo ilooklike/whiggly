@@ -7,19 +7,10 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 		'click h3': 'showModal'
 	},
 	
-	showModal: function (event) {
-		event.preventDefault();
-		var model = this.collection.get($(event.currentTarget).data('id'))
-	  this.modalView = this.modalView ||
-	    new Whiggly.Views.EventModal({ model: model });
-	  $('body').prepend(this.modalView.render().$el);
-	  this.modalView.delegateEvents();
-	},
-	
 	initialize: function() {
 		window.v = this;
 		//initialize the map
-		this.mapView = new Whiggly.Views.Map();
+		this.mapView = new Whiggly.Views.Map({ indexView: this });
 		this.listenToOnce(this.collection, "sync", this.drop);
 		this.listenTo(this.collection, "remove", this.mapView.removeMarker.bind(this.mapView));
 		
@@ -92,6 +83,15 @@ Whiggly.Views.EventsIndex = Backbone.CompositeView.extend({
 	    return false;
 	  });
 		return this;
+	},
+	
+	showModal: function (event) {
+		event.preventDefault();
+		var model = this.collection.get($(event.currentTarget).data('id'))
+	  this.modalView = this.modalView ||
+	    new Whiggly.Views.EventModal({ model: model });
+	  $('body').prepend(this.modalView.render().$el);
+	  this.modalView.delegateEvents();
 	},
 	
 	unlitMarker: function(event) {
