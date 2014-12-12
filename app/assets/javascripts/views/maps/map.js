@@ -177,7 +177,7 @@ Whiggly.Views.Map = Backbone.View.extend({
 		
 		var mapView = this;
 		google.maps.event.addListener(info, 'domready', function() {
-			$('#info-header').on("click", function(e) { 
+			$('#text-box').on("click", function(e) { 
 				mapView.indexView.showModal(e) 
 			})
 		});

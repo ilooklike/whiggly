@@ -282,12 +282,20 @@ p.navbar-brand {
 //	background-color: lightgrey;
 //}
 
-.text-box dt {
+//get rid of this?
+#text-box dt {
 	display: inline-block;
 }
 
-.text-box p {
+#text-box:hover {
+	cursor: pointer;
+}
+
+#text-box p {
 	padding-top: 15px;
+	&:hover {
+		font-weight: 400;
+	}
 }
 
 .info-text {

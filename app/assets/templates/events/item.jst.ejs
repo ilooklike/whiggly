@@ -1,7 +1,7 @@
-<div class="text-box">
+<div id="text-box" data-id="<%= event.id %>">
 	<h3 id="info-header" data-id="<%= event.id %>"><%= event.escape("title") %></h3>
 	<div class="img-wrap">
-		<img src="<%= event.escape("imageURL") %>" class="img-rounded" >
+		<img src="<%= event.escape("imageURL") %>" class="img-rounded" data-id="<%= event.id %>">
 	</div>
 
 	<p>
