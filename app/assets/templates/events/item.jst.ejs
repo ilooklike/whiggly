@@ -1,31 +1,10 @@
 <div class="text-box">
-<h3 id="info-header" data-id="<%= event.id %>"><%= event.escape("title") %></h3>
-<div class="img-wrap">
-	<img src="<%= event.escape("imageURL") %>" class="img-rounded" >
-</div>
+	<h3 id="info-header" data-id="<%= event.id %>"><%= event.escape("title") %></h3>
+	<div class="img-wrap">
+		<img src="<%= event.escape("imageURL") %>" class="img-rounded" >
+	</div>
 
-<dl>
-	<dt>category:</dt>
-	<dd class="info-text"> 
-		<%= event.escape("category") %>
-	</dd>
-</dl>
-<dl>	
-	<dt>When:</dt>
-	<dd class="info-text">
-		<%= (new Date(event.escape('date'))).toLocaleDateString() %>
-	</dd>
-</dl>
-<dl>
-	<dt>Where:</dt>
-	<dd class="info-text">
-		<%= event.escape('venue_title') %><br>
-		<%= event.escape('address') %>
-	</dd>
-</dl>
-
-<dl>
-	<dt>Description: </dt><br>
-	<%= event.escape("description").substr(0,150) + "..." %>
-</dl>
+	<p>
+	<%= event.escape("description").substr(0,80) + "...		@" + event.escape("venue_title") %>
+	</p>
 </div> 
