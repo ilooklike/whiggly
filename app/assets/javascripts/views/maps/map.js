@@ -171,7 +171,7 @@ Whiggly.Views.Map = Backbone.View.extend({
 		//TODO handle removal? 
 		var info = new google.maps.InfoWindow({
 			content: infoView.template({ event: event }),
-			maxWidth: 450,
+			maxWidth: 250,
 			infoView: infoView
 		});		
 		

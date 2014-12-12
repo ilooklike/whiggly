@@ -5,28 +5,14 @@
 <div class="modal-box">
   <a href="#" title="Close" class="close">X</a>
 	<img src="<%= event.escape("imageURL") %>" class="img-rounded" >
-	<dl>
-		<dt>category:</dt>
-		<dd class="info-text">
-			<%= event.escape("category") %>
-		</dd>
-	</dl>
-	<dl>
-		<dt>When:</dt>
-		<dd class="info-text">
-			<%= (new Date(event.escape('date'))).toLocaleDateString() %>
-		</dd>
-	</dl>
-	<dl>
-		<dt>Where:</dt>
-		<dd class="info-text">
-			<%= event.escape('venue_title') %><br>
-			<%= event.escape('address') %>
-		</dd>
-	</dl>
+	<h4><%= event.escape("title") %></h4>
+	<p>
+		Date: <%= (new Date(event.escape('date'))).toLocaleDateString() %> 
+		<span class="venue"> Venue: <%= event.escape('venue_title') %>, <%= event.escape('address') %></span>
 
 	<dl>
-		<dt>Description: </dt><br>
 		<%= event.escape("description") %>
 	</dl>
+
+	<p>Tag: <a href="#?start_date=&end_date=&tag=<%= event.escape("category") %>"><%= event.escape("category") %></a></p>
 </div>

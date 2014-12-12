@@ -221,6 +221,7 @@ p.navbar-brand {
 }
 
 .modal-box {
+	transition: width 1s;
 	z-index: 99999;
 	width: 800px;
 	position: absolute;
@@ -238,6 +239,11 @@ p.navbar-brand {
 
 .modal-box img {
 	width: 100%;
+	padding-top: 15px;
+}
+
+.modal-box p {
+	font-size: 12px;
 }
 
 .close {
@@ -264,6 +270,9 @@ p.navbar-brand {
 	color: #CC0000;
 }
 
+.venue {
+	padding-left: 20px;
+}
 .login {
 	width: 250px;
 	margin: 0 auto;

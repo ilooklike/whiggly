@@ -20,7 +20,7 @@ Whiggly.Routers.Router = Backbone.Router.extend({
 
 	_parseParams: function(query) {
 		var search = {};
-		var queries = decodeURIComponent(query).replace(/^\?/, "").split('&')
+		var queries = decodeURIComponent(query).replace(/^\?/, "").replace("+", " ").split('&')
 		for( i = 0; i < queries.length; i++ ) {
       var pair = queries[i].split('=');
       search[pair[0]] = pair[1];
