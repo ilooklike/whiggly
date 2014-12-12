@@ -8,11 +8,17 @@ Whiggly.Views.EventModal = Backbone.View.extend({
 	
 	events: {
 		'click .close': 'dismiss',
-		'click .modal-backdrop' : 'dismiss'
+		'click .modal-backdrop' : 'dismiss',
+		'click a': 'clickLink'
 	},
 	
 	dismiss: function(event) {
 		event.preventDefault();
+		this.parentView.modalView = null;
+		this.remove();
+	},
+	
+	clickLink: function(event) {
 		this.parentView.modalView = null;
 		this.remove();
 	},
